@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * 稠密图
+ * 稠密图算法
  * @Author lkh
  */
 public class DenseGraph {
