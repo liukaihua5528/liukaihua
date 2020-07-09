@@ -1,6 +1,5 @@
 package cn.tedu.heap;
 
-import java.util.Comparator;
 import java.util.Random;
 
 /**
