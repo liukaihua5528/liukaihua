@@ -1,5 +1,7 @@
 package cn.tedu.algorithm.stack;
 
+import java.util.Stack;
+
 /**
  * 判断括号是否匹配
  * @Date 2020/7/9 20:46
@@ -7,10 +9,34 @@ package cn.tedu.algorithm.stack;
  */
 public class IsValid {
 
+    /**
+     * 判断括号是否匹配
+     * @param s
+     * @return
+     */
     public boolean isValid(String s){
-
-
-        return false;
+        Stack<Character> stack = new Stack<>();
+        for (int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            }else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char topChar = stack.pop();
+                if (c == ')' && topChar != '(') {
+                    return false;
+                }
+                if (c == '}' && topChar != '{') {
+                    return false;
+                }
+                if (c == ']' && topChar != '[') {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
     }
 
 }
