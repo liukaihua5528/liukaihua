@@ -39,4 +39,8 @@ public class IsValid {
         return stack.isEmpty();
     }
 
+    public static void main(String[] args) {
+        System.out.println(new IsValid().isValid("()[]{}"));
+    }
+
 }
