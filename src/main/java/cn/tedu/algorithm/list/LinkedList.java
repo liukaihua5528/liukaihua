@@ -29,11 +29,11 @@ public class LinkedList<E> {
         }
     }
 
-    private Node head;
+    private Node dummyHead;
     private int size;
 
     public LinkedList() {
-        head = null;
+        dummyHead = new Node(null,null);
         size = 0;
     }
 
@@ -48,32 +48,87 @@ public class LinkedList<E> {
     }
 
     public void addFirst(E e){
-        Node node = new Node(e);
-        node.next = head;
-        head = node;
-        size++;
+//        Node node = new Node(e);
+//        node.next = head;
+//        head = node;
+//        size++;
+        add(0,e);
     }
 
     public void add(int index,E e){
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed");
         }
-        if (index == 0) {
-            addFirst(e);
-        }else {
-            Node prev = head;
-            for (int i=0;i<index-1;i++){
-                prev = prev.next;
-            }
-            Node node = new Node(e);
-            node.next = prev.next;
-            prev.next = node;
-            size++;
+
+        Node prev = dummyHead;
+        for (int i=0;i<index;i++){
+            prev = prev.next;
         }
+        Node node = new Node(e);
+        node.next = prev.next;
+        prev.next = node;
+        size++;
     }
 
     public void addLast(E e){
         add(size,e);
     }
 
+    /**
+     * 获取元素
+     * @param index
+     * @return
+     */
+    public E get(int index){
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("get failed");
+        }
+        Node cur = dummyHead.next;
+        for (int i=0;i<index;i++){
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    public E getFirst(){
+        return get(0);
+    }
+
+    public E getLast(){
+        return get(size-1);
+    }
+
+    public void set(int index,E e){
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("get failed");
+        }
+        Node cur = dummyHead.next;
+        for (int i=0;i<index;i++){
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+    public boolean isContains(E e){
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            if (cur.e.equals(e)) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            builder.append(cur+"->");
+            cur = cur.next;
+        }
+        builder.append("NULL");
+        return builder.toString();
+    }
 }
