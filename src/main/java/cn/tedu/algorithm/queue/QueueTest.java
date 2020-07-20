@@ -1,5 +1,7 @@
 package cn.tedu.algorithm.queue;
 
+import cn.tedu.algorithm.list.LinkedListQueue;
+
 import java.util.Random;
 
 /**
@@ -23,13 +25,16 @@ public class QueueTest {
     }
 
     public static void main(String[] args) {
-        int opCount = 1000000;
+        int opCount = 100000;
         ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         double time1 = testQueue(arrayQueue,opCount);
         System.out.println(time1);
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
         double time2 = testQueue(loopQueue,opCount);
         System.out.println(time2);
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        double time3 = testQueue(linkedListQueue,opCount);
+        System.out.println(time3);
     }
 
 }
