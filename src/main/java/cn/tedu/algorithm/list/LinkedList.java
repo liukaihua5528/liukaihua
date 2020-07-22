@@ -55,6 +55,33 @@ public class LinkedList<E> {
         add(0,e);
     }
 
+    public void add(E e){
+        if (dummyHead.next == null) {
+            dummyHead.next = new Node(e);
+            size++;
+        }else {
+            Node res = new Node(e);
+            res.next = dummyHead.next;
+            dummyHead.next = res;
+        }
+    }
+
+    public void addNode(E e){
+        if (dummyHead.next == null) {
+            dummyHead.next = new Node(e);
+            size++;
+        }else {
+            add(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(1);
+        list.add(2);
+        System.out.println(list);
+    }
+
     public void add(int index,E e){
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed");

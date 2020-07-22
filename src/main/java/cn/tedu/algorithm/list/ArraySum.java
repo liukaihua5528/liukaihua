@@ -11,7 +11,7 @@ public class ArraySum {
     }
 
     private static int sum(int[] arr,int l){
-        if (l == arr.length) {
+        if (arr.length == l) {
             return 0;
         }
         return arr[l]+sum(arr,l+1);

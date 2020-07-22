@@ -19,6 +19,14 @@ public class RemoveElements3 {
         }
     }
 
+    private String generateDepthString(int depth) {
+        StringBuilder builder = new StringBuilder();
+        for (int i=0;i<depth;i++){
+            builder.append("--");
+        }
+        return builder.toString();
+    }
+
     public static void main(String[] args) {
         int[] num = {1,2,6,3,4,5,6};
         ListNode head = new ListNode(num);
