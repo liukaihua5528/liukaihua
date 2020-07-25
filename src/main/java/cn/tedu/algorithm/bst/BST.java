@@ -87,4 +87,59 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
+    public void preOrder(){
+        preOrder(root);
+    }
+
+    public void inOrder(){
+        inOrder(root);
+    }
+
+    //中序遍历
+    private void inOrder(Node node){
+        if (node == null) {
+            return;
+        }
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    /**
+     * 前序遍历
+     * @param node
+     */
+    private void preOrder(Node node){
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        generateBSTString(root,0,builder);
+        return builder.toString();
+    }
+
+    private void generateBSTString(Node root, int depth, StringBuilder builder) {
+        if (root == null) {
+            builder.append(generateDepthString(depth)+"null\n");
+            return;
+        }
+        builder.append(generateDepthString(depth)+root.e+"\n");
+        generateBSTString(root.left,depth+1,builder);
+        generateBSTString(root.right,depth+1,builder);
+    }
+
+    private String generateDepthString(int depth) {
+        StringBuilder builder = new StringBuilder();
+        for (int i=0;i<depth;i++){
+            builder.append("--");
+        }
+        return builder.toString();
+    }
 }
