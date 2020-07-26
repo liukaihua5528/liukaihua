@@ -11,7 +11,10 @@ public class BSTTest {
         for (int num:nums){
             bst.add(num);
         }
-        bst.inOrder();
+//        bst.preOrder();
+//        bst.preOrderNR();
+
+        bst.inOrderNR();
     }
 
 }

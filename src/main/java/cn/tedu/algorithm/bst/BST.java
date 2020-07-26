@@ -1,5 +1,10 @@
 package cn.tedu.algorithm.bst;
 
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * 可比较性
  * @Date 2020/7/23 21:33
@@ -116,6 +121,96 @@ public class BST<E extends Comparable<E>> {
         System.out.println(node.e);
         preOrder(node.left);
         preOrder(node.right);
+    }
+
+    //二分搜索树非递归前序遍历
+    public void preOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+        }
+    }
+
+    public void inOrderNR(){
+        Stack<Node> stack = new Stack<>();
+        Node cur = root;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            System.out.println(cur.e);
+            cur = cur.right;
+        }
+    }
+
+    public void postOrder(){
+        postOrder(root);
+    }
+
+    //后序遍历
+    private void postOrder(Node node){
+        if (node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
+
+    //层序遍历
+    public void levelOrder(){
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node cur  = queue.remove();
+            System.out.println(cur.e);
+            if (cur.left != null) {
+                queue.add(cur.left);
+            }
+            if (cur.right != null) {
+                queue.add(cur.right);
+            }
+        }
+    }
+
+    //寻找二分搜索树最小元素
+    public E minimum(){
+        if (size == 0) {
+            throw new IllegalArgumentException("bst is empty");
+        }
+        return minimum(root).e;
+    }
+
+    private Node minimum(Node node){
+        if (node.left == null) {
+            return node;
+        }
+        return minimum(node.left);
+    }
+
+    //寻找二分搜索树最大元素
+    public E maximum(){
+        if (size == 0) {
+            throw new IllegalArgumentException("bst is empty");
+        }
+        return maximum(root).e;
+    }
+
+    private Node maximum(Node node){
+        if (node.right == null) {
+            return node;
+        }
+        return maximum(node.right);
     }
 
     @Override
