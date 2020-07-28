@@ -213,6 +213,88 @@ public class BST<E extends Comparable<E>> {
         return maximum(node.right);
     }
 
+    public E removeMin(){
+        E ret = minimum();
+        removeMin(root);
+        return ret;
+    }
+
+    /**
+     * 删除掉以node为根的二分搜索树最小节点 返回删除节点后新的二分搜索树的根
+     * @param node
+     * @return
+     */
+    private Node removeMin(Node node){
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    public E removeMax(){
+        E ret = maximum();
+        removeMax(root);
+        return ret;
+    }
+
+    private Node removeMax(Node node){
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+        node.right = removeMax(node.right);
+        return node;
+    }
+
+    public void remove(E e){
+        root = remove(root,e);
+    }
+
+    //删除以node为根的二分搜索树的元素e
+    private Node remove(Node root, E e) {
+        if (root == null) {
+            return null;
+        }
+        if (e.compareTo(root.e) < 0) {
+            root.left = remove(root.left,e);
+            return root;
+        } else if (e.compareTo(root.e) > 0) {
+            root.right = remove(root.right,e);
+            return root;
+        }else {
+            //左子树为空
+            if (root.left == null) {
+                Node rightNode = root.right;
+                root.right = null;
+                size--;
+                return rightNode;
+            }
+            //右子树为空
+            if (root.right == null) {
+                Node leftNode = root.left;
+                root.left = null;
+                size--;
+                return leftNode;
+            }
+            /**
+             * 待删除结点均不为空
+             * 找到比待删除结点大的最小结点
+             */
+            Node successor = minimum(root.right);
+            successor.right = removeMin(root.right);
+            successor.left = root.left;
+            root.left = root.right = null;
+            return successor;
+        }
+    }
+
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
