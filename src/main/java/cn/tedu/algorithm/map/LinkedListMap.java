@@ -52,6 +52,20 @@ public class LinkedListMap<K,V> implements Map<K,V>{
 
     @Override
     public V remove(K key) {
+        Node prev = dummyHead;
+        while (prev.next != null) {
+            if (prev.next.key.equals(key)) {
+                break;
+            }
+            prev = prev.next;
+        }
+        if (prev.next != null) {
+            Node delNode = prev.next;
+            prev.next = delNode.next;
+            delNode.next = null;
+            size--;
+            return delNode.value;
+        }
         return null;
     }
 
@@ -67,8 +81,12 @@ public class LinkedListMap<K,V> implements Map<K,V>{
     }
 
     @Override
-    public void set(K key, V value) {
-
+    public void set(K key, V newValue) {
+        Node node = getNode(key);
+        if (node == null) {
+            throw new IllegalArgumentException(key+" doesn't exist");
+        }
+        node.value = newValue;
     }
 
     @Override
