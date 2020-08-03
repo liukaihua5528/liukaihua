@@ -167,6 +167,15 @@ public class Array<E> {
         }
     }
 
+    public void swap(int i,int j){
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("index is illegal");
+        }
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
+    }
+
     public String toString(){
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("Array:size = %d,capacity = %d\n",size,data.length));
