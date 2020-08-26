@@ -1,16 +1,16 @@
 package cn.tedu.algorithm.unionFind;
 
 /**
- * @Date 2020/8/19 22:45
+ * @Date 2020/8/25 21:46
  * @Created by liukaihua
  */
-public class UnionFind4 implements UF{
+public class UnionFind5 implements UF{
 
     private int[] parent;
     //sz[i]表示以i为根的集合中元素个数
     private int[] rank;
 
-    public UnionFind4(int size) {
+    public UnionFind5(int size) {
         parent = new int[size];
         rank = new int[size];
         for (int i=0;i<size;i++){
@@ -29,6 +29,7 @@ public class UnionFind4 implements UF{
             throw new IllegalArgumentException("p is out of bound");
         }
         while (p!=parent[p]){
+            parent[p] = parent[parent[p]];
             p = parent[p];
         }
         return p;

@@ -29,12 +29,16 @@ public class UnionTest {
     public static void main(String[] args) {
         int size = 100000;
         int m = 100000;
-        UnionFind1 find1 = new UnionFind1(size);
-        System.out.println(testUF(find1,m));
-        UnionFind2 find2 = new UnionFind2(size);
-        System.out.println(testUF(find2,m));
+//        UnionFind1 find1 = new UnionFind1(size);
+//        System.out.println(testUF(find1,m));
+//        UnionFind2 find2 = new UnionFind2(size);
+//        System.out.println(testUF(find2,m));
         UnionFind3 find3 = new UnionFind3(size);
         System.out.println(testUF(find3,m));
+        UnionFind4 find4 = new UnionFind4(size);
+        System.out.println(testUF(find4,m));
+        UnionFind5 find5 = new UnionFind5(size);
+        System.out.println(testUF(find5,m));
     }
 
 }
