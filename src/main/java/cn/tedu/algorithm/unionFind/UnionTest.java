@@ -39,6 +39,8 @@ public class UnionTest {
         System.out.println(testUF(find4,m));
         UnionFind5 find5 = new UnionFind5(size);
         System.out.println(testUF(find5,m));
+        UnionFind6 find6 = new UnionFind6(size);
+        System.out.println(testUF(find6,m));
     }
 
 }
